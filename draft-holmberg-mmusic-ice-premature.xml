@@ -9,10 +9,10 @@
 <?rfc subcompact="yes" ?>
 <?rfc sortrefs="no" ?>
 <?rfc strict="yes" ?>
-<rfc ipr="trust200902" category="std" docName="draft-holmberg-mmusic-ice-premature-latest" obsoletes="" updates="8445" submissionType="IETF" xml:lang="en">
+<rfc ipr="trust200902" category="std" docName="draft-holmberg-mmusic-ice-ages-latest" obsoletes="" updates="8445" submissionType="IETF" xml:lang="en">
   <front>
-    <title abbrev="ICE Premature">
-      Prevent Premature Interactive Connectivity Establishment (ICE) Failures
+    <title abbrev="ICE Ages">
+      Interactive Connectivity Establishment (ICE): Avoiding Generating Errors Spuriously
     </title>
       <author initials="C.H." surname="Holmberg" fullname="Christer Holmberg">
       <organization>Ericsson</organization>
@@ -24,6 +24,18 @@
           <country>Finland</country>
         </postal>
         <email>christer.holmberg@ericsson.com</email>
+      </address>
+    </author>
+     <author initials="J." surname="Uberti" fullname="Justin Uberti">
+      <organization>Google</organization>
+      <address>
+        <postal>
+          <street>747 6th St S</street>
+          <code>98033</code>
+          <city>Kirkland</city>
+          <country>USA</country>
+        </postal>
+        <email>justin@uberti.name</email>
       </address>
     </author>
   
@@ -48,15 +60,9 @@
       <t>
         When an endpoint receives the initial set of candidates from the remote peer, it starts to
         process them. As part of the processing, one or more candidates might get discarded. There
-        are a number of reasons why a candidate is discared, e.g., because it represents an IP version
+        are a number of reasons why a candidate is discarded, e.g., because it represents an IP version
         that is not supported by the endpoint, or if the connection-address associated with the candidate
         is represented by a Fully Qualified Domain Name (FQDN) that the endpoint is not able to resolve.
-        Similairly, as a candidate by definition represents a single connection-address, if a FQDN 
-        resoles into multiple connection-addresses the associated candidate needs to be discared. 
-      </t>
-      <t>
-        NOTE: Future specifications might describe how FQDNs that resolve into multiple connection-addresses
-        are used with ICE.
       </t>
       <t>
         According to the procedures in <xref target="RFC8445"></xref>, if an endpoint discards the complete set
