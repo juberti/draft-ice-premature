@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="windows-1252"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
 <!ENTITY RFC0822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC0822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC8445 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8445.xml">
 ]>
 <?rfc toc="yes" ?>
@@ -41,7 +42,7 @@
   <middle>
     <section title="Introduction" toc="default">
       <t>
-        <xref target="RFC8445"> describes a protocol, Interactive Connectivity Establishment (ICE), 
+        <xref target="RFC8445"></xref> describes a protocol, Interactive Connectivity Establishment (ICE), 
         for Network Address Translator (NAT) traversal for UDP-based communication.
       </t>
       <t>
@@ -58,7 +59,7 @@
         are used with ICE.
       </t>
       <t>
-        According to the procedures in <xref target="RFC8445">, if an endpoint discards the complete set
+        According to the procedures in <xref target="RFC8445"></xref>, if an endpoint discards the complete set
         of initial candidates received from the remote peer, it will declare an ICE failure, and terminate
         the session establishment, as the endpoint's list of remote candidates will be empty.
       </t>
@@ -68,13 +69,12 @@
         are referred to as peer relexive candidates. However, the endpoint will most likely have declared
         ICE failure before it is able to create such candidates.
       </t>
-      </t>
       <t>
-        This speicifcation updates <xref target="RFC8445">, by suggesting that an endpoint does not immediately
+        This specifcation updates <xref target="RFC8445"></xref>, by suggesting that an endpoint does not immediately
         declare ICE failure in case the initial set of candidiates received from the remote peer are
         discarded, but instead wait for a while in case it will receive connectivity checks that create one
         or more peer reflexive candidates. Once the endpoint has created such candidates, it processes them
-        using the normal procedures defined in  <xref target="RFC8445">.
+        using the normal procedures defined in <xref target="RFC8445"></xref>.
       </t>
     </section>
  
@@ -89,35 +89,30 @@
     </section>
 
     <section title="Update to RFC 8445">
-      <t>
-        ...
-      </t>
     </section>
 
     <section anchor="section.sec" title="Security Considerations">
         <t>
-          The security considerations for ICE are defined in <xref target="RFC4566" pageno="false" format="default"/>.
+          The security considerations for ICE are defined in <xref target="RFC8445" pageno="false" format="default"/>.
           This specification only recommends ICE endpoints to wait for a certain time of period before they declare
           ICE failure, and does not introduce new security considerations.
         </t>
     </section>
+
     <section anchor="section.iana" title="IANA considerations">
       <t>
         This specification makes no requests to IANA.
       </t>
+    </section>
 
     <section anchor="sec-acks" title="Acknowledgements" toc="default">
-      <t>
-        ...
-      </t>
     </section>
   </middle>
   <back>
     <references title="Normative References">
       <?rfc include="reference.RFC.2119"?>
+      <?rfc include="reference.RFC.8174"?>
       <?rfc include="reference.RFC.8445"?> 
-    </references>
-    <references title="Informative References">
     </references>
   </back>
 </rfc>
