@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC0822 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC8445 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8445.xml">
+]>
+<?rfc toc="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="yes" ?>
+<?rfc sortrefs="no" ?>
+<?rfc strict="yes" ?>
+<rfc ipr="trust200902" category="std" docName="draft-holmberg-mmusic-ice-premature-latest" obsoletes="" updates="8445" submissionType="IETF" xml:lang="en">
+  <front>
+    <title abbrev="ICE Premature">
+      Prevent Premature Interactive Connectivity Establishment (ICE) Failures
+    </title>
+      <author initials="C.H." surname="Holmberg" fullname="Christer Holmberg">
+      <organization>Ericsson</organization>
+      <address>
+        <postal>
+          <street>Hirsalantie 11</street>
+          <code>02420</code>
+          <city>Jorvas</city>
+          <country>Finland</country>
+        </postal>
+        <email>christer.holmberg@ericsson.com</email>
+      </address>
+    </author>
+  
+    <date year="2019"/>
+    <area>Transport</area>
+    <workgroup>MMUSIC Working Group</workgroup>
+    <keyword>ICE</keyword>
+    <keyword>Candidate</keyword>
+    <abstract>
+      <t>
+        ...
+      </t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction" toc="default">
+      <t>
+        <xref target="RFC8445"> describes a protocol, Interactive Connectivity Establishment (ICE), 
+        for Network Address Translator (NAT) traversal for UDP-based communication.
+      </t>
+      <t>
+        When an endpoint receives the initial set of candidates from the remote peer, it starts to
+        process them. As part of the processing, one or more candidates might get discarded. There
+        are a number of reasons why a candidate is discared, e.g., because it represents an IP version
+        that is not supported by the endpoint, or if the connection-address associated with the candidate
+        is represented by a Fully Qualified Domain Name (FQDN) that the endpoint is not able to resolve.
+        Similairly, as a candidate by definition represents a single connection-address, if a FQDN 
+        resoles into multiple connection-addresses the associated candidate needs to be discared. 
+      </t>
+      <t>
+        NOTE: Future specifications might describe how FQDNs that resolve into multiple connection-addresses
+        are used with ICE.
+      </t>
+      <t>
+        According to the procedures in <xref target="RFC8445">, if an endpoint discards the complete set
+        of initial candidates received from the remote peer, it will declare an ICE failure, and terminate
+        the session establishment, as the endpoint's list of remote candidates will be empty.
+      </t>
+      <t>
+        Once the endpoints have exchanged the initial set of candidates, and start performing connectivity 
+        cheks, additional candidiates might be created as a result of the connectivity checks. Such candidates
+        are referred to as peer relexive candidates. However, the endpoint will most likely have declared
+        ICE failure before it is able to create such candidates.
+      </t>
+      </t>
+      <t>
+        This speicifcation updates <xref target="RFC8445">, by suggesting that an endpoint does not immediately
+        declare ICE failure in case the initial set of candidiates received from the remote peer are
+        discarded, but instead wait for a while in case it will receive connectivity checks that create one
+        or more peer reflexive candidates. Once the endpoint has created such candidates, it processes them
+        using the normal procedures defined in  <xref target="RFC8445">.
+      </t>
+    </section>
+ 
+    <section title="Conventions">
+      <t>
+        The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+        NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+        "MAY", and "OPTIONAL" in this document are to be interpreted as
+        described in BCP 14 <xref target="RFC2119"></xref> <xref target="RFC8174"></xref>
+        when, and only when, they appear in all capitals, as shown here.
+      </t>
+    </section>
+
+    <section title="Update to RFC 8445">
+      <t>
+        ...
+      </t>
+    </section>
+
+    <section anchor="section.sec" title="Security Considerations">
+        <t>
+          The security considerations for ICE are defined in <xref target="RFC4566" pageno="false" format="default"/>.
+          This specification only recommends ICE endpoints to wait for a certain time of period before they declare
+          ICE failure, and does not introduce new security considerations.
+        </t>
+    </section>
+    <section anchor="section.iana" title="IANA considerations">
+      <t>
+        This specification makes no requests to IANA.
+      </t>
+
+    <section anchor="sec-acks" title="Acknowledgements" toc="default">
+      <t>
+        ...
+      </t>
+    </section>
+  </middle>
+  <back>
+    <references title="Normative References">
+      <?rfc include="reference.RFC.2119"?>
+      <?rfc include="reference.RFC.8445"?> 
+    </references>
+    <references title="Informative References">
+    </references>
+  </back>
+</rfc>
